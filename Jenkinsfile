@@ -2,10 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Update') {
             steps {
-                echo 'Building..'
-				bat "\"${tool 'MSBuild'}\" /t:Build /p:WorkingDirectory=\"C:\\Continuous Integration\\Sistemas\\Metricas\\KB\\CIMT15\" /p:ServerUsername=\"local\\nsanguinetti\" /p:ServerPassword=\"Brother.6180\" /p:GX_PROGRAM_DIR=\"C:\\Program Files (x86)\\GeneXus\\GeneXus15\" /p:MSBuildExtensionsPath=\"C:\\Program Files (x86)\\MSBuild\""
+                echo '----- Update from GXServer -----'
+				build 'MT - Update'
+            }
+        }
+		stage('Build') {
+            steps {
+                echo '----- Building MT -----'
+				build 'MT - Build'
             }
         }
         stage('Test') {
