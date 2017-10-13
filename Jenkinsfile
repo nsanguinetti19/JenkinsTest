@@ -9,6 +9,11 @@ pipeline {
             }
         }
 		stage('Build') {
+		    when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
             steps {
                 echo '----- Building MT -----'
 				build 'MT - Build'
