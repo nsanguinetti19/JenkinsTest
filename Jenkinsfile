@@ -35,4 +35,15 @@ pipeline {
             }
         }
     }
+	post {
+        success {
+            mail to: nsanguinetti@concepto.com.uy, subject: 'The Pipeline success :)'
+        }
+        unstable {
+            mail to: nsanguinetti@concepto.com.uy, subject: 'The Pipeline is unstable :|'
+        }
+		failure {
+            mail to: nsanguinetti@concepto.com.uy, subject: 'The Pipeline failed :('
+        }
+    }
 }
