@@ -5,7 +5,7 @@ pipeline {
         stage('Update') {
             steps {
                 echo '----- Update from GXServer -----'
-				build 'MT - Update'
+				/*build 'MT - Update'*/
             }
         }
 		stage('Build') {
@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 echo '----- Building MT -----'
-				build 'MT - Build'
+				/*build 'MT - Build'*/
             }
         }
 		stage('Validaciones') {
@@ -43,7 +43,7 @@ pipeline {
 				KBDir = credentials('MTKBDir')
 				TADir = credentials('MTTADir')
 				TMDir = credentials('MTTMDir')
-				BetaBatchDir = credentials('MTBetaBatchDir')
+				BetaBatchDir = credentials('MTBetaBatchDir') 
 				KBBatchDir = credentials('MTBatchKBDir')
 			}
             when {
@@ -54,12 +54,12 @@ pipeline {
 			parallel {
 				stage('Deploy TA') {
 					steps {
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
+						/*build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]*/
 					}
 				}
 				stage('Deploy Beta') {
 					steps {
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]
+						/*build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]*/
 					}
 				}
 				stage('Deploy BetaBatch') {
