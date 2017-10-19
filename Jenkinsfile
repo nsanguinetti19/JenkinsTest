@@ -19,7 +19,7 @@ pipeline {
 				build 'MT - Build'
             }
         }
-		parallel(
+		parallel {
 			stage('Comparar Navegaciones') {
 				steps {
 					echo '----- Comparo Navegaciones -----'
@@ -35,7 +35,7 @@ pipeline {
 					echo '----- Comparo API -----'
 				}
 			}
-		)
+		}
         stage('Test Integración') {
             steps {
                 echo '----- Testing.. -----'
