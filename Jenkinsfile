@@ -5,7 +5,7 @@ pipeline {
         stage('Update') {
             steps {
                 echo '----- Update from GXServer -----'
-				build 'MT - Update'
+				/*build 'MT - Update'*/
             }
         }
 		stage('Build') {
@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 echo '----- Building MT -----'
-				build 'MT - Build'
+				/*build 'MT - Build'*/
             }
         }
 		stage('Validaciones') {
@@ -63,7 +63,7 @@ pipeline {
 				}
 				stage('Deploy BetaBatch') {
 					steps {
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}\bin"), text(name: 'DeployDestino', value: "${MTBatchDir}")]
+						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}\\bin"), text(name: 'DeployDestino', value: "${MTBatchDir}")]
 					}
 				}
 			}
