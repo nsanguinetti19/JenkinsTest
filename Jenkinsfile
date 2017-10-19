@@ -5,7 +5,7 @@ pipeline {
         stage('Update') {
             steps {
                 echo '----- Update from GXServer -----'
-				build 'MT - Update'
+				/*build 'MT - Update'*/
             }
         }
 		stage('Build') {
