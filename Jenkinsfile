@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 echo '----- Building MT -----'
-				build 'MT - Build'
+				/*build 'MT - Build'*/
             }
         }
 		stage('Validaciones') {
@@ -38,20 +38,29 @@ pipeline {
 				}
 			}
 		}
-		stage('Test Integración') {
-				steps {
-					echo '----- Testing.. -----'
-				}
-			}
         stage('Deploy') {
             when {
               expression {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
               }
             }
-            steps {
-                echo '----- Deploying -----'
-            }
+			parallel {
+				stage('Deploy Beta') {
+					steps {
+						echo '----- Comparo Navegaciones -----'
+					}
+				}
+				stage('Deploy TA') {
+					steps {
+						echo '----- Testing.. -----'
+					}
+				}
+			}
         }
+		stage('Testeo Integracion') {
+			steps {
+				echo '----- Testeo automático -----'
+			}
+		}
     }
 }
