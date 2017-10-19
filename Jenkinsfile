@@ -39,6 +39,11 @@ pipeline {
 			}
 		}
         stage('Deploy') {
+			environment {
+				KBDir     = credentials('MTKBDir')
+				TADir = credentials('MTTADir')
+				TMDir = credentials('MTTMDir')
+			}
             when {
               expression {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
@@ -47,12 +52,13 @@ pipeline {
 			parallel {
 				stage('Deploy TA') {
 					steps {
-						echo '----- Testing.. -----'
+						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
+
 					}
 				}
 				stage('Deploy Beta') {
 					steps {
-						echo '----- Comparo Navegaciones -----'
+						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]
 					}
 				}
 			}
