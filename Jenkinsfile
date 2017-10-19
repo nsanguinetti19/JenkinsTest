@@ -51,12 +51,18 @@ pipeline {
             }
 			parallel {
 				stage('Deploy TA') {
+					agent{
+						label "TA"
+					}
 					steps {
 						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
 
 					}
 				}
 				stage('Deploy Beta') {
+					agent{
+						label "Beta"
+					}
 					steps {
 						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]
 					}
