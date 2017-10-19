@@ -19,28 +19,30 @@ pipeline {
 				build 'MT - Build'
             }
         }
-		parallel {
-			stage('Comparar Navegaciones') {
-				steps {
-					echo '----- Comparo Navegaciones -----'
+		stage('Validaciones') {
+			parallel {
+				stage('Comparar Navegaciones') {
+					steps {
+						echo '----- Comparo Navegaciones -----'
+					}
+				}
+				stage('Test Unitario') {
+					steps {
+						echo '----- Testing.. -----'
+					}
+				}
+				stage('Comparar API') {
+					steps {
+						echo '----- Comparo API -----'
+					}
 				}
 			}
-			stage('Test Unitario') {
+			stage('Test Integración') {
 				steps {
 					echo '----- Testing.. -----'
 				}
 			}
-			stage('Comparar API') {
-				steps {
-					echo '----- Comparo API -----'
-				}
-			}
 		}
-        stage('Test Integración') {
-            steps {
-                echo '----- Testing.. -----'
-            }
-        }
         stage('Deploy') {
             when {
               expression {
