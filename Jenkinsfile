@@ -45,14 +45,14 @@ pipeline {
               }
             }
 			parallel {
-				stage('Deploy Beta') {
-					steps {
-						echo '----- Comparo Navegaciones -----'
-					}
-				}
 				stage('Deploy TA') {
 					steps {
 						echo '----- Testing.. -----'
+					}
+				}
+				stage('Deploy Beta') {
+					steps {
+						echo '----- Comparo Navegaciones -----'
 					}
 				}
 			}
