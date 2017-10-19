@@ -43,7 +43,7 @@ pipeline {
 				KBDir = credentials('MTKBDir')
 				TADir = credentials('MTTADir')
 				TMDir = credentials('MTTMDir')
-				BatchDir = credentials('MTBatchDir')
+				BetaBatchDir = credentials('MTBetaBatchDir')
 				KBBatchDir = credentials('MTBatchKBDir')
 			}
             when {
@@ -64,7 +64,7 @@ pipeline {
 				}
 				stage('Deploy BetaBatch') {
 					steps {
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBBatchDir}"), text(name: 'DeployDestino', value: "${BatchDir}")]
+						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBBatchDir}"), text(name: 'DeployDestino', value: "${BetaBatchDir}")]
 					}
 				}
 			}
