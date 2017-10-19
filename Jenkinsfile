@@ -37,12 +37,12 @@ pipeline {
 					}
 				}
 			}
-			stage('Test Integración') {
+		}
+		stage('Test Integración') {
 				steps {
 					echo '----- Testing.. -----'
 				}
 			}
-		}
         stage('Deploy') {
             when {
               expression {
