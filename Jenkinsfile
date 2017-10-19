@@ -19,9 +19,26 @@ pipeline {
 				build 'MT - Build'
             }
         }
-        stage('Test') {
+		parallel(
+			stage('Comparar Navegaciones') {
+				steps {
+					echo '----- Comparo Navegaciones -----'
+				}
+			}
+			stage('Test Unitario') {
+				steps {
+					echo '----- Testing.. -----'
+				}
+			}
+			stage('Comparar API') {
+				steps {
+					echo '----- Comparo API -----'
+				}
+			}
+		)
+        stage('Test Integración') {
             steps {
-                echo 'Testing..'
+                echo '----- Testing.. -----'
             }
         }
         stage('Deploy') {
@@ -31,7 +48,7 @@ pipeline {
               }
             }
             steps {
-                echo 'Deploying'
+                echo '----- Deploying -----'
             }
         }
     }
