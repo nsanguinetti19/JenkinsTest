@@ -5,7 +5,7 @@ pipeline {
         stage('Update') {
             steps {
                 echo '----- Update from GXServer -----'
-				build 'MT - Update'
+				build 'Update'
             }
         }
 		stage('Build') {
@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 echo '----- Building MT -----'
-				build 'MT - Build'
+				build 'Build'
             }
         }
 		stage('Validaciones') {
@@ -55,19 +55,19 @@ pipeline {
 				stage('Deploy TA') {
 					steps {
 						echo 'Deploying...'
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
+						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
 					}
 				}
 				stage('Deploy Beta') {
 					steps {
 						echo 'Deploying...'
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]
+						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TMDir}")]
 					}
 				}
 				stage('Deploy BetaBatch') {
 					steps {
 						echo 'Deploying...'
-						build job: 'MT - Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBBatchDir}"), text(name: 'DeployDestino', value: "${BetaBatchDir}")]
+						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBBatchDir}"), text(name: 'DeployDestino', value: "${BetaBatchDir}")]
 					}
 				}
 			}
